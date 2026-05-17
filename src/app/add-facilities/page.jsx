@@ -1,5 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const AddFacilitiesPage = () => {
   const { register, handleSubmit } = useForm();
@@ -12,6 +13,13 @@ const AddFacilitiesPage = () => {
       },
       body: JSON.stringify(data),
     });
+
+    if(res) {
+      toast.success("The Facility has been added!");
+    } else{
+      toast.danger("Something went wrong");
+    }
+
     console.log(res);
     const resData = await res.json();
     console.log(resData);
