@@ -1,6 +1,7 @@
 import { Bitter, Geist, Geist_Mono, Smooch_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/Components/Navbar";
+import Footer from "@/Components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,9 +37,10 @@ export default function RootLayout({ children }) {
       data-theme="light"
       className={`${geistSans.variable} ${geistMono.variable} ${smoochSans.variable} ${bitter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-(family-name:--font-bitter)">
+      <body className="min-h-full flex flex-col font-(family-name:--font-bitter) bg-[url('/background.svg')] bg-cover bg-center bg-no-repeat">
         <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

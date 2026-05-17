@@ -4,27 +4,27 @@ import { MdSportsCricket } from "react-icons/md";
 const Navbar = () => {
   const links = (
     <>
-      <li className="font-medium text-md">
+      <li className="font-medium text-md text-white hover:bg-[#aaf40c] rounded-xl hover:text-black active:">
         <Link href={"/"}>
           <h1>Home</h1>
         </Link>
       </li>
-      <li className="font-medium text-md">
+      <li className="font-medium text-md text-white hover:bg-[#aaf40c] rounded-xl hover:text-black active:">
         <Link href={"/all-facilities"}>
           <h1>All Facilities</h1>
         </Link>
       </li>
-      <li className="font-medium text-md">
+      <li className="font-medium text-md text-white hover:bg-[#aaf40c] rounded-xl hover:text-black active:">
         <Link href={"/my-bookings"}>
           <h1>My Bookings</h1>
         </Link>
       </li>
-      <li className="font-medium text-md">
+      <li className="font-medium text-md text-white hover:bg-[#aaf40c] rounded-xl hover:text-black active:">
         <Link href={"/add-facilities"}>
           <h1>Add Facility</h1>
         </Link>
       </li>
-      <li className="font-medium text-md">
+      <li className="font-medium text-md text-white hover:bg-[#aaf40c] rounded-xl hover:text-black active:">
         <Link href={"/my-facilities"}>
           <h1>My Facilities</h1>
         </Link>
@@ -56,13 +56,13 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow bg-black/50 text-white"
             >
               {links}
             </ul>
           </div>
           <Link href={"/"}>
-            <h1 className="font-(family-name:--font-smooch-sans) text-5xl font-bold flex items-center gap-2">
+            <h1 className="font-(family-name:--font-smooch-sans) text-5xl font-bold flex items-center gap-2 text-white">
               <MdSportsCricket className="text-[#aaf40c]" /> SportNest
             </h1>
           </Link>
