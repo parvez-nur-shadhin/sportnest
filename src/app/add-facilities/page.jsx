@@ -17,7 +17,7 @@ const AddFacilitiesPage = () => {
     if(res) {
       toast.success("The Facility has been added!");
     } else{
-      toast.danger("Something went wrong");
+      toast.warning("Something went wrong");
     }
 
     console.log(res);

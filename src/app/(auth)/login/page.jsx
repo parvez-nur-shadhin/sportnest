@@ -2,18 +2,27 @@
 
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const { register, handleSubmit } = useForm();
+  const router = useRouter();
   const onSubmit = async (data) => {
     const { data:res, error } = await authClient.signIn.email({
       email: data.email, // required
       password: data.password, // required
       rememberMe: true,
-      callbackURL: "/",
     });
     console.log(res, error);
+    if(res) {
+      toast.success("You have logged in successfully!");
+      router.push('/');
+    }
+    else{
+      toast.warning(error.message);
+    }
   };
 
   return (
