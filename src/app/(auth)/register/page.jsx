@@ -2,19 +2,26 @@
 
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
   const { register, handleSubmit } = useForm();
+  const router = useRouter();
   const onSubmit = async (data) => {
     const { data:res, error } = await authClient.signUp.email({
       name: data.name, // required
       email: data.email, // required
       password: data.password, // required
       image: data.image,
-      callbackURL: "/login",
     });
-    console.log(res, error);
+    if(res) {
+      toast.success("You have Registered Successfully");
+      router.push('/login');
+    } else {
+      toast.warning(error.message);
+    }
   };
 
   return (
@@ -64,7 +71,7 @@ const RegisterPage = () => {
               </Link>
             </h1>
 
-            <button className="btn btn-neutral mt-4">Login</button>
+            <button className="btn btn-neutral mt-4">Register</button>
           </fieldset>
         </form>
       </div>

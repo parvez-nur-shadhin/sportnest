@@ -124,7 +124,7 @@ const Navbar = () => {
                   alt={user.name}
                   width={60}
                   height={60}
-                  className="rounded-full"
+                  className="rounded-full object-cover w-10 h-10 border-2"
                 />
               </button>
 
