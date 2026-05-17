@@ -1,7 +1,19 @@
+"use client";
+
+import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
 import Link from "next/link";
 import { MdSportsCricket } from "react-icons/md";
 
 const Navbar = () => {
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+  console.log(user);
+
+  const handleLogOut = async () => {
+    await authClient.signOut();
+  };
+
   const links = (
     <>
       <li className="font-medium text-md text-white hover:bg-[#aaf40c] rounded-xl hover:text-black active:">
@@ -28,6 +40,31 @@ const Navbar = () => {
         <Link href={"/my-facilities"}>
           <h1>My Facilities</h1>
         </Link>
+      </li>
+    </>
+  );
+  const loggedInLinks = (
+    <>
+      <li className="font-medium text-md text-white hover:bg-[#aaf40c] rounded-xl hover:text-black active:">
+        <Link href={"/my-bookings"}>
+          <h1>My Bookings</h1>
+        </Link>
+      </li>
+      <li className="font-medium text-md text-white hover:bg-[#aaf40c] rounded-xl hover:text-black active:">
+        <Link href={"/add-facilities"}>
+          <h1>Add Facility</h1>
+        </Link>
+      </li>
+      <li className="font-medium text-md text-white hover:bg-[#aaf40c] rounded-xl hover:text-black active:">
+        <Link href={"/my-facilities"}>
+          <h1>My Facilities</h1>
+        </Link>
+      </li>
+      <li
+        onClick={handleLogOut}
+        className="font-medium text-md text-white hover:bg-[#aaf40c] rounded-xl hover:text-black active:"
+      >
+        <h1>Logout</h1>
       </li>
     </>
   );
@@ -71,9 +108,42 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <Link href={"/login"}>
-            <button className="btn bg-[#aaf40c] text-black">Login</button>
-          </Link>
+          {user ? (
+            <div>
+              {/* change popover-1 and --anchor-1 names. Use unique names for each dropdown */}
+              {/* For TSX uncomment the commented types below */}
+              <button
+                className=" cursor-pointer"
+                popoverTarget="popover-1"
+                style={
+                  { anchorName: "--anchor-1" } /* as React.CSSProperties */
+                }
+              >
+                <Image
+                  src={user.image}
+                  alt={user.name}
+                  width={60}
+                  height={60}
+                  className="rounded-full"
+                />
+              </button>
+
+              <ul
+                className="dropdown menu w-52 rounded-box bg-black/50 text-white shadow-sm"
+                popover="auto"
+                id="popover-1"
+                style={
+                  { positionAnchor: "--anchor-1" } /* as React.CSSProperties */
+                }
+              >
+                {loggedInLinks}
+              </ul>
+            </div>
+          ) : (
+            <Link href={"/login"}>
+              <button className="btn bg-[#aaf40c] text-black">Login</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

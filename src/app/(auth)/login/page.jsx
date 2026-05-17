@@ -18,7 +18,7 @@ const LoginPage = () => {
 
   return (
     <div className="container mx-auto my-15">
-      <h1 className="text-center text-6xl font-bold text-white">
+      <h1 className="text-center text-5xl font-bold text-white">
         Log in to continue
       </h1>
       <div className="mx-auto my-10">
