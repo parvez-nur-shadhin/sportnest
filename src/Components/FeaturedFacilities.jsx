@@ -4,7 +4,6 @@ import FacilityCard from "./FacilityCard";
 const FeaturedFacilities = async() => {
 
     const facilities = await fetchingFacilities();
-    console.log(facilities);
 
     return (
         <div className="container mx-auto my-10 p-4">

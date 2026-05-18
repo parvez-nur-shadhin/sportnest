@@ -8,7 +8,6 @@ import { MdSportsCricket } from "react-icons/md";
 const Navbar = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
-  console.log(user);
 
   const handleLogOut = async () => {
     await authClient.signOut();
