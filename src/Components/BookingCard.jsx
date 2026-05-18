@@ -1,19 +1,24 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 const BookingCard = ({ expectedFacility }) => {
   const { register, handleSubmit } = useForm();
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
   const { facilityName, pricePerHour, availableTimeSlots } = expectedFacility;
 
-  const submitForm = async(data) => {
+  const submitForm = async (data) => {
     const bookingData = {
       facilityName: facilityName,
       bookingDate: data.bookingDate,
       timeSlot: data.timeSlot,
       hours: data.hours,
-      totalPrice: (pricePerHour * data.hours) || pricePerHour,
+      totalPrice: pricePerHour * data.hours || pricePerHour,
+      email: user?.email,
+      status: "pending",
     };
     console.log(bookingData);
     const res = fetch("http://localhost:8000/bookings", {
@@ -24,12 +29,11 @@ const BookingCard = ({ expectedFacility }) => {
       body: JSON.stringify(bookingData),
     });
 
-    if(res){
-        toast.success(`${facilityName} has been booked`);
-        console.log(res);
-    }
-    else{
-        toast.warning(`Something wend wrong!`);
+    if (res) {
+      toast.success(`${facilityName} has been booked`);
+      console.log(res);
+    } else {
+      toast.warning(`Something wend wrong!`);
     }
   };
 
