@@ -113,7 +113,7 @@ const Navbar = () => {
               {/* change popover-1 and --anchor-1 names. Use unique names for each dropdown */}
               {/* For TSX uncomment the commented types below */}
               <button
-                className=" cursor-pointer"
+                className=" cursor-pointer transition hover:scale-130 duration-500"
                 popoverTarget="popover-1"
                 style={
                   { anchorName: "--anchor-1" } /* as React.CSSProperties */
@@ -124,7 +124,7 @@ const Navbar = () => {
                   alt={user.name}
                   width={60}
                   height={60}
-                  className="rounded-full object-cover w-10 h-10 border-2"
+                  className="rounded-full object-cover w-13 h-13 border-2"
                 />
               </button>
 

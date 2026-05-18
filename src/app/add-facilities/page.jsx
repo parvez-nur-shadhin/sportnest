@@ -1,9 +1,11 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 const AddFacilitiesPage = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
   const onSubmit = async (data) => {
     console.log(data);
     const res = await fetch("http://localhost:8000/facilities", {
@@ -24,6 +26,15 @@ const AddFacilitiesPage = () => {
     const resData = await res.json();
     console.log(resData);
   };
+
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+
+  useEffect(() => {
+    if(user?.email) {
+      setValue("email", user.email);
+    }
+  }, [user, setValue])
 
   return (
     <div className="container mx-auto my-15">
@@ -91,6 +102,13 @@ const AddFacilitiesPage = () => {
               className="input w-full"
               placeholder="Enter Description"
               {...register("description")}
+            />
+            <label className="label text-white text-md">Email</label>
+            <input
+              type="email"
+              className="input w-full"
+              placeholder={user?.email}
+              {...register("email")}
             />
 
             <button className="btn bg-[#aaf40c] mt-4 text-black">Login</button>
