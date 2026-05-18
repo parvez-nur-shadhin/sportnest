@@ -31,6 +31,8 @@ const MyBookingsPage = () => {
           <MyBookingsCard
             key={bookingByUser._id}
             bookingByUser={bookingByUser}
+            bookings={bookings}
+            setBookings={setBookings}
           />
         ))}
       </div>

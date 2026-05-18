@@ -16,9 +16,9 @@ const AddFacilitiesPage = () => {
       body: JSON.stringify(data),
     });
 
-    if(res) {
+    if (res) {
       toast.success("The Facility has been added!");
-    } else{
+    } else {
       toast.warning("Something went wrong");
     }
 
@@ -31,10 +31,10 @@ const AddFacilitiesPage = () => {
   const user = session?.user;
 
   useEffect(() => {
-    if(user?.email) {
+    if (user?.email) {
       setValue("email", user.email);
     }
-  }, [user, setValue])
+  }, [user, setValue]);
 
   return (
     <div className="container mx-auto my-15">

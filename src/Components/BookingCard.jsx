@@ -12,6 +12,8 @@ const BookingCard = ({ expectedFacility }) => {
 
   const submitForm = async (data) => {
     const bookingData = {
+      userName: user.name,
+      userId: user.id,
       facilityName: facilityName,
       bookingDate: data.bookingDate,
       timeSlot: data.timeSlot,
