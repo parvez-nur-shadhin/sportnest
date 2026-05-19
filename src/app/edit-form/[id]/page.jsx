@@ -1,24 +1,21 @@
-"use client";
-import { authClient } from "@/lib/auth-client";
-import { useEffect } from "react";
+'use client'
+import { useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
-const AddFacilitiesPage = () => {
-  const { register, handleSubmit, setValue } = useForm();
+
+const EditForm = () => {
+    const {id} = useParams();
+    console.log(id)
+  const { register, handleSubmit} = useForm();
   const onSubmit = async (data) => {
-    const formattedData = {
-      ...data,
-      availableTimeSlots: data.availableTimeSlots
-        .split(",")
-        .map((slot) => slot.trim()),
-    };
-    const res = await fetch("http://localhost:8000/facilities", {
-      method: "POST",
+    console.log(data);
+    const res = await fetch(`http://localhost:8000/facilities/${id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(formattedData),
+      body: JSON.stringify(data),
     });
 
     if (res) {
@@ -32,19 +29,11 @@ const AddFacilitiesPage = () => {
     console.log(resData);
   };
 
-  const { data: session } = authClient.useSession();
-  const user = session?.user;
-
-  useEffect(() => {
-    if (user?.email) {
-      setValue("email", user.email);
-    }
-  }, [user, setValue]);
-
+ 
   return (
     <div className="container mx-auto my-15">
       <h1 className="text-center text-5xl font-bold text-white">
-        Add A Facility
+        Update This Facility
       </h1>
       <div className="mx-auto my-10">
         <form className="mx-auto" onSubmit={handleSubmit(onSubmit)}>
@@ -92,15 +81,6 @@ const AddFacilitiesPage = () => {
               placeholder="Enter Capacity"
               {...register("capacity")}
             />
-            <label className="label text-white text-md">
-              Available Time Slots
-            </label>
-            <input
-              type="text"
-              className="input w-full"
-              placeholder="07:00-09:00, 12:00-14:00"
-              {...register("availableTimeSlots")}
-            />
             <label className="label text-white text-md">Description</label>
             <input
               type="text"
@@ -108,14 +88,8 @@ const AddFacilitiesPage = () => {
               placeholder="Enter Description"
               {...register("description")}
             />
-            <label className="label text-white text-md">Email</label>
-            <input
-              type="email"
-              className="input w-full"
-              placeholder={user?.email}
-              {...register("email")}
-            />
-            <button className="btn bg-[#aaf40c] mt-4 text-black">Login</button>
+
+            <button className="btn bg-[#aaf40c] mt-4 text-black">Update Facility</button>
           </fieldset>
         </form>
       </div>
@@ -123,4 +97,4 @@ const AddFacilitiesPage = () => {
   );
 };
 
-export default AddFacilitiesPage;
+export default EditForm;

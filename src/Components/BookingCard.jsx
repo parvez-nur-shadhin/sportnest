@@ -80,7 +80,6 @@ const BookingCard = ({ expectedFacility }) => {
                 <option key={index}>{availableTimeSlot}</option>
               ))}
             </select>
-            <span className="label">Optional</span>
           </fieldset>
 
           <button className="btn text-black bg-[#aaf40c] mt-4">Book Now</button>

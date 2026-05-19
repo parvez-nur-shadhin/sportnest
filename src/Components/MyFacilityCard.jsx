@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const FacilityCard = ({ facility }) => {
+const MyFacilityCard = ({ facility }) => {
   const { imageUrl, facilityName, description, _id } = facility;
-  console.log(_id);
 
   return (
     <div>
@@ -15,8 +14,8 @@ const FacilityCard = ({ facility }) => {
           <h2 className="card-title">{facilityName}</h2>
           <p>{description}</p>
           <div className="card-actions justify-end">
-            <Link href={`/facility/${_id}`}>
-              <button className="btn bg-[#aaf40c] text-black">Book Now</button>
+            <Link href={`facility-details/${_id}`}>
+              <button className="btn bg-[#aaf40c] text-black">Details</button>
             </Link>
           </div>
         </div>
@@ -25,4 +24,4 @@ const FacilityCard = ({ facility }) => {
   );
 };
 
-export default FacilityCard;
+export default MyFacilityCard;
