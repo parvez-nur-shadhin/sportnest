@@ -40,7 +40,7 @@ const DetailsPage = async ({ params }) => {
   } = expectedFacility;
 
   return (
-    <div className="container mx-auto my-15 md:p-10">
+    <div className="container mx-auto my-15 p-4 md:p-10">
       <div>
         <Link href={"/all-facilities"}>
           <h1 className="flex items-center gap-3 text-white text-2xl">
@@ -57,7 +57,7 @@ const DetailsPage = async ({ params }) => {
           width={1000}
         />
       </div>
-      <div className="flex flex-col md:flex-row justify-between mt-10 max-w-250 mx-auto">
+      <div className="flex flex-col md:flex-row justify-between mt-5 max-w-250 mx-auto">
         <div className="mt-10 p-4">
           <h1 className="text-3xl font-bold text-[#aaf40c] mb-5">
             Facility Details:

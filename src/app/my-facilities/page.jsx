@@ -24,7 +24,7 @@ const MyFacilities = () => {
   );
 
   return (
-    <div className="container mx-auto  min-h-screen">
+    <div className="container mx-auto  min-h-screen p-4">
       <h1 className="text-5xl text-white font-bold text-center my-10">
         My Facilities
       </h1>

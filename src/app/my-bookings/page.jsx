@@ -2,7 +2,6 @@
 
 import MyBookingsCard from "@/Components/MyBookingsCard";
 import { authClient } from "@/lib/auth-client";
-import { fetchingBookings } from "@/lib/fetchingData";
 import { useEffect, useState } from "react";
 
 const MyBookingsPage = () => {
@@ -24,7 +23,7 @@ const MyBookingsPage = () => {
   );
 
   return (
-    <div className="container min-h-screen mx-auto my-20">
+    <div className="container min-h-screen mx-auto my-20 p-4">
       <h1 className="text-center text-5xl text-white font-semibold">My Bookings</h1>
       <div>
         {bookingsByUser.map((bookingByUser) => (

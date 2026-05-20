@@ -115,7 +115,7 @@ const AddFacilitiesPage = () => {
               placeholder={user?.email}
               {...register("email")}
             />
-            <button className="btn bg-[#aaf40c] mt-4 text-black">Login</button>
+            <button className="btn bg-[#aaf40c] mt-4 text-black">Add Facility</button>
           </fieldset>
         </form>
       </div>
