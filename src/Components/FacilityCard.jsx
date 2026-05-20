@@ -3,7 +3,6 @@ import Link from "next/link";
 
 const FacilityCard = ({ facility }) => {
   const { imageUrl, facilityName, description, _id } = facility;
-  console.log(_id);
 
   return (
     <div>

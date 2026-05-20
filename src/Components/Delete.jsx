@@ -5,13 +5,11 @@ import { toast } from "react-toastify";
 
 const Delete = ({ id }) => {
     const router = useRouter();
-  console.log(id);
   const handleDelete = async () => {
     const res = await fetch(`http://localhost:8000/facilities/${id}`, {
       method: "DELETE",
     });
     const data = await res.json();
-    console.log(data);
     if (data.deletedCount > 0) {
       toast.success("Facility Deleted Successfully");
 

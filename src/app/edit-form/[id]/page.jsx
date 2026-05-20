@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 
 const EditForm = () => {
     const {id} = useParams();
-    console.log(id)
   const { register, handleSubmit} = useForm();
   const onSubmit = async (data) => {
     console.log(data);

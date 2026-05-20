@@ -1,5 +1,4 @@
 const MyBookingsCard = ({ bookingByUser, bookings, setBookings }) => {
-  console.log(bookingByUser);
   const {
     _id,
     facilityName,
@@ -15,7 +14,6 @@ const MyBookingsCard = ({ bookingByUser, bookings, setBookings }) => {
       method: "DELETE",
     });
     const data = await res.json();
-    console.log(data);
     if (data.deletedCount > 0) {
       const remainingBookings = bookings.filter(
         (booking) => booking._id !== _id,

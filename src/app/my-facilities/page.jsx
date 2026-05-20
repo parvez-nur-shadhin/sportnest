@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 const MyFacilities = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
-  console.log(user);
 
   const [myFacilities, setMyFacilities] = useState([]);
   useEffect(() => {
@@ -21,7 +20,6 @@ const MyFacilities = () => {
   const facilitiesCreatedByUser = myFacilities.filter(myFacility =>
     myFacility.email === user?.email,
   );
-  console.log(facilitiesCreatedByUser);
 
   return <div className="container mx-auto  min-h-screen">
     <h1 className="text-5xl text-white font-bold text-center my-10">My Facilities</h1>

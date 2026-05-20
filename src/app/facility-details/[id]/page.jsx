@@ -1,33 +1,23 @@
-
 import Delete from "@/Components/Delete";
+import { auth } from "@/lib/auth";
 import { fetchingFacilities } from "@/lib/fetchingData";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 const FacilityDetails = async ({ params }) => {
   const { id } = await params;
-  const facilities = await fetchingFacilities();
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
 
-  const expectedFacility = facilities.find((facility) => id === facility._id);
-
-
-  //   {
-  //     "_id": "6a0ad9a6d3bde442030c2f3f",
-  //     "facilityName": "Elite Basketball Court",
-  //     "facilityType": "Basketball",
-  //     "imageUrl": "https://plus.unsplash.com/premium_photo-1671436822261-2c99507bfc70?q=80&w=2070",
-  //     "location": "Banani, Dhaka",
-  //     "pricePerHour": 900,
-  //     "capacity": 10,
-  //     "availableTimeSlots": [
-  //         "07:00-09:00",
-  //         "12:00-14:00",
-  //         "17:00-19:00"
-  //     ],
-  //     "description": "Professional indoor basketball court with wooden flooring and seating area.",
-  //     "email": "parveznur00@gmail.com"
-  // }
+  const res = await fetch(`http://localhost:8000/facilities/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+  const expectedFacility = await res.json();
 
   const {
     imageUrl,
@@ -48,10 +38,10 @@ const FacilityDetails = async ({ params }) => {
           </h1>
         </Link>
         <div className="flex gap-4 items-center">
-            <Link href={`/edit-form/${id}`}>
+          <Link href={`/edit-form/${id}`}>
             <button className="btn bg-[#aaf40c]">Edit Facility</button>
-            </Link>
-            <Delete id={id} />
+          </Link>
+          <Delete id={id} />
         </div>
       </div>
       <div className="mt-4">
