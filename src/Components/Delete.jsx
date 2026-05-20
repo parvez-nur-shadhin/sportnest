@@ -4,11 +4,14 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const Delete = ({ id }) => {
-    const router = useRouter();
+  const router = useRouter();
   const handleDelete = async () => {
-    const res = await fetch(`http://localhost:8000/facilities/${id}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/facilities/${id}`,
+      {
+        method: "DELETE",
+      },
+    );
     const data = await res.json();
     if (data.deletedCount > 0) {
       toast.success("Facility Deleted Successfully");

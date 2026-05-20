@@ -10,9 +10,12 @@ const MyBookingsCard = ({ bookingByUser, bookings, setBookings }) => {
   } = bookingByUser;
 
   const handleDelete = async () => {
-    const res = await fetch(`http://localhost:8000/bookings/${_id}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${_id}`,
+      {
+        method: "DELETE",
+      },
+    );
     const data = await res.json();
     if (data.deletedCount > 0) {
       const remainingBookings = bookings.filter(

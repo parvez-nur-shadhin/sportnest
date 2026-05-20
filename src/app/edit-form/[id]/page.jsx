@@ -1,21 +1,23 @@
-'use client'
+"use client";
 import { useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
-
 const EditForm = () => {
-    const {id} = useParams();
-  const { register, handleSubmit} = useForm();
+  const { id } = useParams();
+  const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     console.log(data);
-    const res = await fetch(`http://localhost:8000/facilities/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/facilities/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
       },
-      body: JSON.stringify(data),
-    });
+    );
 
     if (res) {
       toast.success("The Facility has been added!");
@@ -28,7 +30,6 @@ const EditForm = () => {
     console.log(resData);
   };
 
- 
   return (
     <div className="container mx-auto my-15">
       <h1 className="text-center text-5xl font-bold text-white">
@@ -88,7 +89,9 @@ const EditForm = () => {
               {...register("description")}
             />
 
-            <button className="btn bg-[#aaf40c] mt-4 text-black">Update Facility</button>
+            <button className="btn bg-[#aaf40c] mt-4 text-black">
+              Update Facility
+            </button>
           </fieldset>
         </form>
       </div>

@@ -23,7 +23,7 @@ const BookingCard = ({ expectedFacility }) => {
       status: "pending",
     };
     console.log(bookingData);
-    const res = fetch("http://localhost:8000/bookings", {
+    const res = fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

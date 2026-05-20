@@ -13,7 +13,7 @@ const AddFacilitiesPage = () => {
         .split(",")
         .map((slot) => slot.trim()),
     };
-    const res = await fetch("http://localhost:8000/facilities", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/facilities`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
