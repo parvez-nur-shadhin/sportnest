@@ -3,7 +3,7 @@ import React from "react";
 const FAQ = () => {
   return (
     <div className="container mx-auto space-y-4 p-4 my-10">
-        <h1 className="text-white text-center font-bold text-3xl mb-5g">Frequently Asked Questions</h1>
+        <h1 className="text-white text-center font-bold text-5xl mb-10">Frequently Asked Questions</h1>
       <div className="space-y-4">
         <div className=" collapse collapse-plus bg-[#aaf40c] border border-base-300">
           <input type="radio" name="my-accordion-3" defaultChecked />
